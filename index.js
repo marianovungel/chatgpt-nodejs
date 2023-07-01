@@ -1,9 +1,10 @@
+require("dotenv").config()
 const express = require('express')
 const cors = require('cors')
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: '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',
+  apiKey: process.env.GPTPESSEWORD,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -25,5 +26,5 @@ app.post('/chat', async (req, res)=>{
     res.status(200).json(completion.data.choices[0].text)
 })
 
-
-app.listen('8000', console.log({server: true}))
+const Port = process.env.PORT
+app.listen(Port, console.log({server: true}))
